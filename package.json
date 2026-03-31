@@ -13,7 +13,9 @@
     "frontend:dev": "pnpm --filter frontend dev",
     "backend:dev": "pnpm --filter backend dev",
     "frontend:build": "pnpm --filter frontend build",
-    "backend:build": "pnpm --filter backend build"
+    "backend:build": "pnpm --filter backend build",
+    "frontend:start": "pnpm --filter frontend start",
+    "backend:start": "pnpm --filter backend start"
   },
   "keywords": ["monorepo", "fullstack", "nextjs"],
   "author": "",
