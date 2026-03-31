@@ -1,0 +1,23 @@
+@layer components {
+  /* Card variants */
+  .card-basic {
+    @apply bg-base-100 rounded-lg shadow-md p-6 border border-base-300;
+  }
+
+  .card-elevated {
+    @apply bg-base-100 rounded-lg shadow-xl p-6 border border-base-300 hover:shadow-2xl transition-shadow duration-200;
+  }
+
+  .card-interactive {
+    @apply bg-base-100 rounded-lg shadow-md p-6 border border-base-300 hover:bg-base-200 transition-colors duration-200 cursor-pointer;
+  }
+
+  /* Card layouts */
+  .card-grid {
+    @apply grid md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .card-stack {
+    @apply space-y-6;
+  }
+}

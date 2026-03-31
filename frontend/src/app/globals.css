@@ -1,0 +1,5 @@
+@import "./styles/tailwind.css";
+@import "./styles/daisy.css";
+@import "./styles/typography/typography.css";
+@import "./styles/components/buttons.css";
+@import "./styles/components/cards.css";

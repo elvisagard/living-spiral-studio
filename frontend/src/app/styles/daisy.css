@@ -1,0 +1,22 @@
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, fantasy;
+  include: button, input, select, badge, card;
+}
+
+/* Set primary color only for fantasy theme */
+:root:has(input.theme-controller[value="fantasy"]:checked),
+[data-theme="fantasy"] {
+  color-scheme: light; /* Keep it light since fantasy is originally a light theme */
+  --color-primary: #102842;
+  --color-primary-content: hsl(211, 62%, 86%);
+  --color-success: #64a700;
+  --color-success-content: #ffffff;
+  --color-success-focus: #6bb800;
+  --color-success-hover: #6bb800;
+  --color-accent: #f68723;
+  --color-neutral: #a36138;
+  --color-neutral-content: #ddc8bb;
+  --color-info: #51e8fb;
+  --color-info-content: hsl(211, 62%, 16%);
+}
+
