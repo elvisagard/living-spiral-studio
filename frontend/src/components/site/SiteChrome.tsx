@@ -30,7 +30,7 @@ export function SiteHeader() {
         <Link href="/" className="min-w-0">
           <div className="flex items-center gap-3">
             <Image
-              src="/images/logo-living-spiral.svg"
+              src="/images/logo-living-spiral-2.svg"
               alt="Living Spiral Studio logo"
               width={44}
               height={44}
@@ -65,7 +65,7 @@ export function SiteFooter() {
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <Image
-              src="/images/logo-living-spiral.svg"
+              src="/images/logo-living-spiral-2.svg"
               alt="Living Spiral Studio logo"
               width={56}
               height={56}
