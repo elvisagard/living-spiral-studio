@@ -16,7 +16,7 @@ const routingCards = [
   },
   {
     brand: 'Chart-Ed Learning',
-    domain: 'chart-ed.om',
+    domain: 'chart-ed.com',
     useFor: 'School district inquiries, framework implementation, DLS-based products, and training requests.',
   },
   {

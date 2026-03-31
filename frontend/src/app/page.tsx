@@ -11,8 +11,8 @@ const dbaCards = [
   },
   {
     name: 'Chart-Ed Learning',
-    domain: 'chart-ed.om',
-    href: 'https://chart-ed.om',
+    domain: 'chart-ed.com',
+    href: 'https://chart-ed.com',
     description:
       'Houses the Chart-Ed Framework for school districts along with products built on top of the DLS.',
   },

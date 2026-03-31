@@ -8,7 +8,7 @@ const dbaLinks = [
   },
   {
     name: 'Chart-Ed Learning',
-    href: 'https://chart-ed.om',
+    href: 'https://chart-ed.com',
   },
   {
     name: 'Living Spiral Education',
