@@ -1,11 +1,11 @@
-# Agard Base Monorepo
+# Living Spiral Studio Monorepo
 
 A full-stack monorepo built with Next.js frontend and Express.js backend, managed with pnpm workspaces.
 
 ## 🏗️ Project Structure
 
 ```
-agard-base/
+living-spiral-studio/
 ├── frontend/          # Next.js React application
 ├── backend/           # Express.js API server
 ├── package.json       # Root workspace configuration
@@ -25,7 +25,7 @@ agard-base/
 
    ```bash
    git clone <your-repo-url>
-   cd agard-base
+   cd living-spiral-studio
    ```
 
 2. **Install dependencies**

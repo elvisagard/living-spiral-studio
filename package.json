@@ -1,7 +1,7 @@
 {
-  "name": "agard-base",
+  "name": "living-spiral-studio",
   "version": "1.0.0",
-  "description": "Monorepo for Agard Base project",
+  "description": "Monorepo for Living Spiral Studio",
   "private": true,
   "packageManager": "pnpm@10.13.1",
   "scripts": {
