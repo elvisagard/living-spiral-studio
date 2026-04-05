@@ -52,6 +52,10 @@ export default function PrivacyPage() {
                 customer support. We may also disclose information when required by law or to protect
                 our rights and users.
               </p>
+              <p className="mt-3">
+                Mobile information and text messaging originator opt-in data will not be shared with
+                third parties or affiliates for marketing or promotional purposes.
+              </p>
             </section>
 
             <section>
@@ -68,6 +72,20 @@ export default function PrivacyPage() {
                 You may contact us to request updates to your information or ask questions about our
                 privacy practices. Depending on your location, you may have additional privacy rights
                 under applicable law.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-stone-950">SMS messaging</h2>
+              <p className="mt-3">
+                If you opt in to receive text messages from Living Spiral Studio, LLC, we may use your
+                mobile number to send customer care and account-related messages connected to your
+                inquiry, purchase, scheduling, or requested educational services. Message frequency
+                varies. Message and data rates may apply.
+              </p>
+              <p className="mt-3">
+                You can opt out of SMS communications at any time by replying STOP. For help, reply
+                HELP or contact support@livingspiralstudio.com.
               </p>
             </section>
 

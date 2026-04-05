@@ -153,6 +153,11 @@ export function SiteFooter() {
                 Terms
               </Link>
             </li>
+            <li>
+              <Link href="/sms-consent" className="transition hover:text-white">
+                SMS consent
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

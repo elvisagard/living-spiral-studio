@@ -34,6 +34,23 @@ export default function TermsPage() {
             </section>
 
             <section>
+              <h2 className="text-2xl font-semibold text-stone-950">SMS terms</h2>
+              <p className="mt-3">
+                By opting in to receive SMS messages from Living Spiral Studio, LLC, you agree to
+                receive customer care and account-related text messages associated with your inquiry,
+                order, account, scheduling, or requested educational services. Message frequency
+                varies. Message and data rates may apply.
+              </p>
+              <p className="mt-3">
+                Consent to receive SMS messages is not a condition of purchase. You can opt out at any
+                time by replying STOP. For help, reply HELP or contact support@livingspiralstudio.com.
+              </p>
+              <p className="mt-3">
+                Carriers are not liable for delayed or undelivered messages.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-2xl font-semibold text-stone-950">Purchases and billing</h2>
               <p className="mt-3">
                 Some products or services may require payment. By making a purchase, you agree to
