@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ContactInquiryForm } from '@/components/site/ContactInquiryForm';
 import { SiteFooter, SiteHeader } from '@/components/site/SiteChrome';
 
 export const metadata: Metadata = {
@@ -125,6 +126,10 @@ export default function ContactPage() {
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="mt-10">
+          <ContactInquiryForm />
         </div>
       </section>
 
