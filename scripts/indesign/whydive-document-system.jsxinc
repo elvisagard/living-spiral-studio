@@ -1,0 +1,353 @@
+/*
+  WhyDive document system for Adobe InDesign ExtendScript.
+
+  This include is intentionally ES3-compatible for ExtendScript. Builder files
+  provide document content; this file provides the reusable WhyDive visual
+  system: cover, running header, section pages, callouts, and application rows.
+*/
+
+var WhyDive = WhyDive || {};
+
+WhyDive.PAGE_W = 612; // 8.5in
+WhyDive.PAGE_H = 792; // 11in
+WhyDive.MARGIN_L = 63;
+WhyDive.MARGIN_R = 63;
+WhyDive.MARGIN_T = 54;
+WhyDive.MARGIN_B = 50;
+WhyDive.CONTENT_W = WhyDive.PAGE_W - WhyDive.MARGIN_L - WhyDive.MARGIN_R;
+
+WhyDive.palette = {
+  ink: [7, 27, 29],
+  teal: [7, 58, 60],
+  accent: [103, 199, 200],
+  plaster: [247, 246, 241],
+  fog: [221, 232, 231],
+  brass: [142, 111, 62],
+  white: [255, 255, 255],
+  body: [50, 68, 71],
+  muted: [111, 125, 128]
+};
+
+WhyDive.bounds = function (top, left, width, height) {
+  return [top, left, top + height, left + width];
+};
+
+WhyDive.color = function (doc, name, rgb) {
+  var c = doc.colors.itemByName(name);
+  if (!c.isValid) {
+    c = doc.colors.add({
+      name: name,
+      model: ColorModel.PROCESS,
+      space: ColorSpace.RGB,
+      colorValue: rgb
+    });
+  }
+  return c;
+};
+
+WhyDive.font = function (preferred, fallback) {
+  var f = app.fonts.itemByName(preferred);
+  if (f.isValid) {
+    return f;
+  }
+  f = app.fonts.itemByName(fallback);
+  if (f.isValid) {
+    return f;
+  }
+  return app.fonts[0];
+};
+
+WhyDive.addParaStyle = function (doc, name, props) {
+  var s = doc.paragraphStyles.itemByName(name);
+  if (!s.isValid) {
+    s = doc.paragraphStyles.add({ name: name });
+  }
+  s.properties = props;
+  return s;
+};
+
+WhyDive.setupDocument = function (title) {
+  app.scriptPreferences.measurementUnit = MeasurementUnits.POINTS;
+
+  var doc = app.documents.add();
+  doc.documentPreferences.pageWidth = WhyDive.PAGE_W;
+  doc.documentPreferences.pageHeight = WhyDive.PAGE_H;
+  doc.documentPreferences.facingPages = false;
+  doc.viewPreferences.horizontalMeasurementUnits = MeasurementUnits.POINTS;
+  doc.viewPreferences.verticalMeasurementUnits = MeasurementUnits.POINTS;
+
+  doc.marginPreferences.top = WhyDive.MARGIN_T;
+  doc.marginPreferences.bottom = WhyDive.MARGIN_B;
+  doc.marginPreferences.left = WhyDive.MARGIN_L;
+  doc.marginPreferences.right = WhyDive.MARGIN_R;
+
+  doc.metadataPreferences.documentTitle = title;
+
+  WhyDive.colors = {
+    ink: WhyDive.color(doc, "WhyDive Ink", WhyDive.palette.ink),
+    teal: WhyDive.color(doc, "WhyDive Teal", WhyDive.palette.teal),
+    accent: WhyDive.color(doc, "WhyDive Accent", WhyDive.palette.accent),
+    plaster: WhyDive.color(doc, "WhyDive Plaster", WhyDive.palette.plaster),
+    fog: WhyDive.color(doc, "WhyDive Fog", WhyDive.palette.fog),
+    brass: WhyDive.color(doc, "WhyDive Brass", WhyDive.palette.brass),
+    white: WhyDive.color(doc, "WhyDive White", WhyDive.palette.white),
+    body: WhyDive.color(doc, "WhyDive Body", WhyDive.palette.body),
+    muted: WhyDive.color(doc, "WhyDive Muted", WhyDive.palette.muted)
+  };
+
+  var serif = WhyDive.font("Georgia", "Minion Pro");
+  var sans = WhyDive.font("Arial", "Helvetica");
+
+  WhyDive.styles = {
+    coverBrand: WhyDive.addParaStyle(doc, "WhyDive Cover Brand", {
+      appliedFont: serif,
+      pointSize: 22,
+      leading: 26,
+      fillColor: WhyDive.colors.teal
+    }),
+    docLabel: WhyDive.addParaStyle(doc, "WhyDive Document Label", {
+      appliedFont: sans,
+      fontStyle: "Bold",
+      pointSize: 8.5,
+      leading: 12,
+      capitalization: Capitalization.ALL_CAPS,
+      tracking: 220,
+      fillColor: WhyDive.colors.brass
+    }),
+    coverTitle: WhyDive.addParaStyle(doc, "WhyDive Cover Title", {
+      appliedFont: serif,
+      pointSize: 36,
+      leading: 42,
+      fillColor: WhyDive.colors.ink,
+      spaceAfter: 10
+    }),
+    coverSubtitle: WhyDive.addParaStyle(doc, "WhyDive Cover Subtitle", {
+      appliedFont: sans,
+      pointSize: 12.5,
+      leading: 20,
+      fillColor: WhyDive.colors.body
+    }),
+    h1: WhyDive.addParaStyle(doc, "WhyDive H1", {
+      appliedFont: serif,
+      pointSize: 29,
+      leading: 34,
+      fillColor: WhyDive.colors.ink,
+      spaceAfter: 14
+    }),
+    h2: WhyDive.addParaStyle(doc, "WhyDive H2", {
+      appliedFont: serif,
+      pointSize: 19,
+      leading: 24,
+      fillColor: WhyDive.colors.ink,
+      spaceBefore: 16,
+      spaceAfter: 8
+    }),
+    body: WhyDive.addParaStyle(doc, "WhyDive Body", {
+      appliedFont: sans,
+      pointSize: 10.5,
+      leading: 17,
+      fillColor: WhyDive.colors.body,
+      spaceAfter: 8
+    }),
+    bodyStrong: WhyDive.addParaStyle(doc, "WhyDive Body Strong", {
+      appliedFont: sans,
+      fontStyle: "Bold",
+      pointSize: 10.5,
+      leading: 17,
+      fillColor: WhyDive.colors.ink,
+      spaceAfter: 8
+    }),
+    eyebrow: WhyDive.addParaStyle(doc, "WhyDive Eyebrow", {
+      appliedFont: sans,
+      fontStyle: "Bold",
+      pointSize: 8,
+      leading: 12,
+      capitalization: Capitalization.ALL_CAPS,
+      tracking: 170,
+      fillColor: WhyDive.colors.brass,
+      spaceAfter: 10
+    }),
+    calloutLabel: WhyDive.addParaStyle(doc, "WhyDive Callout Label", {
+      appliedFont: sans,
+      fontStyle: "Bold",
+      pointSize: 7.5,
+      leading: 11,
+      capitalization: Capitalization.ALL_CAPS,
+      tracking: 170,
+      fillColor: WhyDive.colors.teal,
+      spaceAfter: 8
+    }),
+    calloutText: WhyDive.addParaStyle(doc, "WhyDive Callout Text", {
+      appliedFont: serif,
+      pointSize: 17,
+      leading: 23,
+      fillColor: WhyDive.colors.ink
+    }),
+    rowLabel: WhyDive.addParaStyle(doc, "WhyDive Row Label", {
+      appliedFont: sans,
+      fontStyle: "Bold",
+      pointSize: 8,
+      leading: 12,
+      capitalization: Capitalization.ALL_CAPS,
+      tracking: 150,
+      fillColor: WhyDive.colors.teal
+    }),
+    footer: WhyDive.addParaStyle(doc, "WhyDive Footer", {
+      appliedFont: sans,
+      pointSize: 7.5,
+      leading: 10,
+      fillColor: WhyDive.colors.muted
+    })
+  };
+
+  return doc;
+};
+
+WhyDive.rect = function (page, top, left, width, height, fill, stroke) {
+  var none = app.activeDocument.swatches.itemByName("None");
+  var r = page.rectangles.add();
+  r.geometricBounds = WhyDive.bounds(top, left, width, height);
+  r.fillColor = fill === "None" ? none : fill;
+  r.strokeColor = stroke ? (stroke === "None" ? none : stroke) : none;
+  return r;
+};
+
+WhyDive.text = function (page, top, left, width, height, contents, style) {
+  var tf = page.textFrames.add();
+  tf.geometricBounds = WhyDive.bounds(top, left, width, height);
+  tf.contents = contents;
+  tf.textFramePreferences.insetSpacing = [0, 0, 0, 0];
+  tf.parentStory.appliedParagraphStyle = style;
+  return tf;
+};
+
+WhyDive.paragraphs = function (page, top, left, width, height, paragraphs, style) {
+  var tf = WhyDive.text(page, top, left, width, height, paragraphs.join("\r\r"), style);
+  return tf;
+};
+
+WhyDive.brandMark = function (page, top, left, doc) {
+  var mark = WhyDive.rect(page, top + 4, left, 24, 24, "None", WhyDive.colors.accent);
+  mark.strokeWeight = 1.5;
+  try {
+    mark.cornerOption = CornerOptions.ROUNDED_CORNER;
+    mark.cornerRadius = 12;
+  } catch (e) {}
+  WhyDive.rect(page, top + 13, left + 9, 6, 6, WhyDive.colors.accent, "None");
+  WhyDive.text(page, top, left + 36, 160, 30, "WhyDive", WhyDive.styles.coverBrand);
+};
+
+WhyDive.cover = function (doc, data) {
+  var page = doc.pages[0];
+  page.appliedMaster = NothingEnum.NOTHING;
+  WhyDive.rect(page, 0, 0, WhyDive.PAGE_W, WhyDive.PAGE_H, WhyDive.colors.plaster, "None");
+  WhyDive.rect(page, 0, 0, 55, WhyDive.PAGE_H, WhyDive.colors.teal, "None");
+  WhyDive.rect(page, 74, 96, 86, 2.25, WhyDive.colors.accent, "None");
+
+  WhyDive.brandMark(page, 108, 96, doc);
+  WhyDive.text(page, 178, 96, 420, 18, data.label || "POSITIONING PAPER", WhyDive.styles.docLabel);
+  WhyDive.text(page, 214, 96, 426, 132, data.title, WhyDive.styles.coverTitle);
+  WhyDive.text(page, 344, 96, 426, 76, data.subtitle, WhyDive.styles.coverSubtitle);
+
+  WhyDive.callout(page, 486, 96, 420, 112, data.claimLabel || "Foundational claim", data.claim);
+
+  WhyDive.rect(page, 690, 96, 420, 0.75, WhyDive.colors.fog, "None");
+  WhyDive.text(page, 716, 96, 190, 13, "DOCUMENT SYSTEM", WhyDive.styles.docLabel);
+  WhyDive.text(page, 733, 96, 220, 22, data.system || "Framework positioning", WhyDive.styles.body);
+  WhyDive.text(page, 716, 402, 114, 13, "BRAND LEVEL", WhyDive.styles.docLabel);
+  WhyDive.text(page, 733, 402, 140, 22, data.brandLevel || "Parent framework", WhyDive.styles.body);
+};
+
+WhyDive.header = function (page, doc, label) {
+  WhyDive.brandMark(page, 42, WhyDive.MARGIN_L, doc);
+  WhyDive.text(page, 46, 450, 100, 13, label || "POSITIONING PAPER", WhyDive.styles.docLabel);
+  WhyDive.rect(page, 81, WhyDive.MARGIN_L, WhyDive.CONTENT_W, 0.75, WhyDive.colors.fog, "None");
+};
+
+WhyDive.footer = function (page, doc, text, number) {
+  WhyDive.rect(page, 735, WhyDive.MARGIN_L, WhyDive.CONTENT_W, 0.75, WhyDive.colors.fog, "None");
+  WhyDive.text(page, 748, WhyDive.MARGIN_L, 260, 14, text || "WhyDive positioning system", WhyDive.styles.footer);
+  WhyDive.text(page, 748, 540, 16, 14, number < 10 ? "0" + number : "" + number, WhyDive.styles.footer);
+};
+
+WhyDive.callout = function (page, top, left, width, height, label, text) {
+  var doc = app.activeDocument;
+  WhyDive.rect(page, top, left, width, height, WhyDive.colors.white, "None");
+  WhyDive.rect(page, top, left, 3.5, height, WhyDive.colors.accent, "None");
+  WhyDive.text(page, top + 22, left + 25, width - 50, 13, label, WhyDive.styles.calloutLabel);
+  WhyDive.text(page, top + 45, left + 25, width - 50, height - 56, text, WhyDive.styles.calloutText);
+};
+
+WhyDive.sectionPage = function (doc, data, pageNumber) {
+  var page = doc.pages.add(LocationOptions.AT_END);
+  page.appliedMaster = NothingEnum.NOTHING;
+  WhyDive.rect(page, 0, 0, WhyDive.PAGE_W, WhyDive.PAGE_H, WhyDive.colors.white, "None");
+  WhyDive.header(page, doc, data.runningLabel);
+  WhyDive.text(page, 116, WhyDive.MARGIN_L, 380, 16, data.eyebrow, WhyDive.styles.eyebrow);
+  WhyDive.text(page, 146, WhyDive.MARGIN_L, 330, 126, data.title, WhyDive.styles.h1);
+  WhyDive.paragraphs(page, 276, WhyDive.MARGIN_L, 330, 218, data.paragraphs || [], WhyDive.styles.body);
+
+  if (data.rail) {
+    WhyDive.rect(page, 132, 402, 147, 3, WhyDive.colors.accent, "None");
+    WhyDive.rect(page, 135, 402, 147, 156, WhyDive.colors.plaster, "None");
+    WhyDive.text(page, 158, 419, 112, 13, data.rail.label, WhyDive.styles.calloutLabel);
+    WhyDive.text(page, 187, 419, 108, 86, data.rail.text, WhyDive.styles.calloutText);
+  }
+
+  if (data.callout) {
+    WhyDive.callout(page, data.callout.top || 510, WhyDive.MARGIN_L, 420, 112, data.callout.label, data.callout.text);
+  }
+
+  if (data.rows) {
+    WhyDive.rows(page, doc, data.rowsTop || 500, data.rowsTitle, data.rowsIntro, data.rows);
+  }
+
+  WhyDive.footer(page, doc, data.footerText, pageNumber);
+  return page;
+};
+
+WhyDive.rows = function (page, doc, top, title, intro, rows) {
+  var y = top;
+  WhyDive.rect(page, y, WhyDive.MARGIN_L, WhyDive.CONTENT_W, 0.75, WhyDive.colors.fog, "None");
+  y += 24;
+  WhyDive.text(page, y, WhyDive.MARGIN_L, 360, 30, title, WhyDive.styles.h2);
+  y += 42;
+  if (intro) {
+    WhyDive.text(page, y, WhyDive.MARGIN_L, 400, 34, intro, WhyDive.styles.body);
+    y += 40;
+  }
+  for (var i = 0; i < rows.length; i++) {
+    WhyDive.rect(page, y, WhyDive.MARGIN_L, WhyDive.CONTENT_W, 0.75, WhyDive.colors.fog, "None");
+    WhyDive.text(page, y + 14, WhyDive.MARGIN_L, 100, 18, rows[i].label, WhyDive.styles.rowLabel);
+    WhyDive.text(page, y + 12, WhyDive.MARGIN_L + 132, 354, 46, rows[i].text, WhyDive.styles.body);
+    y += rows[i].height || 70;
+  }
+  WhyDive.rect(page, y, WhyDive.MARGIN_L, WhyDive.CONTENT_W, 0.75, WhyDive.colors.fog, "None");
+};
+
+WhyDive.saveDocument = function (doc, fileStem) {
+  var folder = new Folder(Folder.myDocuments + "/WhyDive InDesign");
+  if (!folder.exists) {
+    folder.create();
+  }
+  var indd = new File(folder.fsName + "/" + fileStem + ".indd");
+  doc.save(indd);
+
+  var pdf = new File(folder.fsName + "/" + fileStem + ".pdf");
+  try {
+    doc.exportFile(ExportFormat.PDF_TYPE, pdf, false);
+  } catch (e) {
+    // Some InDesign installs require explicit PDF presets. The INDD still saves.
+  }
+  return indd;
+};
+
+WhyDive.buildDocument = function (data) {
+  var doc = WhyDive.setupDocument(data.title);
+  WhyDive.cover(doc, data.cover);
+  for (var i = 0; i < data.pages.length; i++) {
+    WhyDive.sectionPage(doc, data.pages[i], i + 2);
+  }
+  var saved = WhyDive.saveDocument(doc, data.fileStem);
+  alert("Created " + data.title + "\n\nSaved to:\n" + saved.fsName);
+};
