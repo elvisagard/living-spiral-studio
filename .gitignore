@@ -37,6 +37,9 @@ jspm_packages/
 # Optional npm cache directory
 .npm
 
+# Local artifact build workspace
+.codex-build/
+
 # Optional eslint cache
 .eslintcache
 
@@ -79,4 +82,4 @@ jspm_packages/
 
 # OS
 .DS_Store
-Thumbs.db 
+Thumbs.db

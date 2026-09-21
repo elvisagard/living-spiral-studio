@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
+  <defs><clipPath id="photo"><circle cx="400" cy="520" r="205"/></clipPath></defs>
+  <rect x="18" y="18" width="764" height="1164" rx="42" fill="#fbfaf6" stroke="#d5d2ca" stroke-width="6"/>
+  <path d="M18 60 Q18 18 60 18 H740 Q782 18 782 60 V455 Q590 505 400 485 Q210 465 18 420Z" fill="#0f523b"/>
+  <rect x="290" y="55" width="220" height="48" rx="24" fill="#f6f6f4" stroke="#d8d8d4" stroke-width="4"/>
+  <text x="400" y="225" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="88" font-weight="900" letter-spacing="3">RIVERDALE</text>
+  <text x="400" y="282" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="45" font-weight="700" letter-spacing="13">MIDDLE SCHOOL</text>
+  <circle cx="400" cy="520" r="220" fill="#fff"/>
+  <image href="golden-retriever-portrait.png" x="195" y="315" width="410" height="410" preserveAspectRatio="xMidYMid slice" clip-path="url(#photo)"/>
+  <circle cx="400" cy="520" r="205" fill="none" stroke="#fff" stroke-width="14"/>
+  <text x="400" y="805" text-anchor="middle" fill="#0f523b" font-family="Arial, sans-serif" font-size="105" font-weight="900">Casey</text>
+  <text x="400" y="875" text-anchor="middle" fill="#163f31" font-family="Arial, sans-serif" font-size="40" font-weight="800" letter-spacing="10">STUDENT AMBASSADOR</text>
+  <g transform="translate(170 950)" fill="#0f523b">
+    <ellipse cx="35" cy="22" rx="22" ry="35"/><ellipse cx="88" cy="10" rx="22" ry="35"/><ellipse cx="140" cy="22" rx="22" ry="35"/>
+    <path d="M45 112C45 62 74 38 88 38s43 24 43 74c0 28-26 32-43 20-17 12-43 8-43-20Z"/>
+  </g>
+  <line x1="370" y1="945" x2="370" y2="1110" stroke="#0f523b" stroke-width="3"/>
+  <text x="420" y="985" fill="#0f523b" font-family="Arial, sans-serif" font-size="45" font-weight="900" letter-spacing="4">LEARN</text>
+  <text x="420" y="1045" fill="#0f523b" font-family="Arial, sans-serif" font-size="45" font-weight="900" letter-spacing="4">LEAD</text>
+  <text x="420" y="1105" fill="#0f523b" font-family="Arial, sans-serif" font-size="45" font-weight="900" letter-spacing="4">BELONG</text>
+</svg>

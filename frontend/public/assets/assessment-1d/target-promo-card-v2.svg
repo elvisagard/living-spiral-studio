@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs><clipPath id="leftPhoto"><polygon points="0,0 690,0 510,900 0,900"/></clipPath></defs>
+  <rect width="1600" height="900" fill="#111"/>
+  <image href="basketball-hoop-photo.png" x="0" y="0" width="760" height="900" preserveAspectRatio="xMidYMid slice" clip-path="url(#leftPhoto)"/>
+  <polygon points="660,0 725,0 550,835 510,900" fill="#ff7a22"/>
+  <rect x="550" y="835" width="1050" height="65" fill="#ff7a22"/>
+  <text x="1110" y="95" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="45" letter-spacing="8">RIVERDALE MIDDLE SCHOOL</text>
+  <text x="1085" y="255" text-anchor="middle" fill="#fff" font-family="Impact, Arial Narrow, sans-serif" font-size="145" letter-spacing="4">BASKETBALL</text>
+  <text x="1085" y="375" text-anchor="middle" fill="#ff7a22" font-family="Impact, Arial Narrow, sans-serif" font-size="135" font-style="italic" letter-spacing="3">TRYOUTS</text>
+  <g fill="#fff" font-family="Arial, sans-serif" font-size="47" font-weight="800">
+    <text x="840" y="520">OCT 14–16</text><text x="840" y="610">RMS GYM</text><text x="840" y="700">3:30 – 5:00 PM</text>
+  </g>
+  <g fill="none" stroke="#fff" stroke-width="10"><rect x="740" y="475" width="56" height="52" rx="4"/><path d="M768 565c-26 0-45 20-45 45 0 35 45 72 45 72s45-37 45-72c0-25-19-45-45-45Z"/><circle cx="768" cy="685" r="28"/></g>
+  <g stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M752 464v22M784 464v22M768 670v18l13 9"/></g>
+  <line x1="1240" y1="470" x2="1240" y2="720" stroke="#fff" stroke-width="4"/>
+  <text x="1350" y="520" fill="#fff" font-family="Arial, sans-serif" font-size="50" font-weight="900">PLAY</text><text x="1350" y="585" fill="#fff" font-family="Arial, sans-serif" font-size="50" font-weight="900">IMPROVE</text><text x="1350" y="650" fill="#fff" font-family="Arial, sans-serif" font-size="50" font-weight="900">BELONG</text>
+  <text x="1080" y="880" text-anchor="middle" fill="#111" font-family="Arial, sans-serif" font-size="42" font-weight="900" letter-spacing="5">BE PART OF SOMETHING BIGGER</text>
+</svg>

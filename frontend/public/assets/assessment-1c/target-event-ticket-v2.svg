@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700">
+  <rect x="10" y="10" width="1580" height="680" rx="14" fill="#fdfdfc" stroke="#d4d9df" stroke-width="4"/>
+  <rect x="10" y="10" width="220" height="680" rx="14" fill="#07559a"/>
+  <rect x="1320" y="10" width="270" height="680" rx="14" fill="#a9d9fb"/>
+  <line x1="1320" y1="10" x2="1320" y2="690" stroke="#173a67" stroke-width="4" stroke-dasharray="18 14"/>
+  <text x="120" y="350" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="78" font-weight="900" letter-spacing="8" transform="rotate(-90 120 350)">ADMIT ONE</text>
+  <text x="775" y="115" text-anchor="middle" fill="#173a67" font-family="Arial, sans-serif" font-size="53" letter-spacing="8">RIVERDALE MIDDLE SCHOOL</text>
+  <text x="775" y="275" text-anchor="middle" fill="#0d376d" font-family="Impact, Arial Narrow, sans-serif" font-size="140" letter-spacing="4">TALENT SHOW</text>
+  <line x1="300" y1="340" x2="680" y2="340" stroke="#77bde9" stroke-width="6"/><line x1="870" y1="340" x2="1250" y2="340" stroke="#77bde9" stroke-width="6"/>
+  <polygon points="775,300 792,335 832,341 803,369 810,409 775,390 740,409 747,369 718,341 758,335" fill="#ffc928"/>
+  <g fill="#0d376d" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="455" y="525" font-size="48" font-weight="900">APR 25</text><text x="455" y="580" font-size="40">2025</text>
+    <text x="775" y="540" font-size="58" font-weight="900">6:00 PM</text>
+    <text x="1090" y="525" font-size="48" font-weight="900">RMS</text><text x="1090" y="580" font-size="38">AUDITORIUM</text>
+  </g>
+  <g stroke="#77bde9" stroke-width="4"><line x1="615" y1="405" x2="615" y2="590"/><line x1="935" y1="405" x2="935" y2="590"/></g>
+  <g fill="none" stroke="#0d376d" stroke-width="9"><rect x="422" y="385" width="66" height="58" rx="6"/><circle cx="775" cy="414" r="33"/><path d="M1090 380c-27 0-47 21-47 47 0 36 47 72 47 72s47-36 47-72c0-26-20-47-47-47Z"/></g>
+  <g stroke="#0d376d" stroke-width="7" stroke-linecap="round"><path d="M436 374v22M474 374v22M775 397v18l14 9"/><circle cx="1090" cy="426" r="11" fill="#0d376d"/></g>
+  <text x="1455" y="310" text-anchor="middle" fill="#0d376d" font-family="Impact, Arial Narrow, sans-serif" font-size="105">$5</text>
+  <text x="1455" y="385" text-anchor="middle" fill="#0d376d" font-family="Arial, sans-serif" font-size="38" font-weight="800">GENERAL</text><text x="1455" y="430" text-anchor="middle" fill="#0d376d" font-family="Arial, sans-serif" font-size="38" font-weight="800">ADMISSION</text>
+  <polygon points="1455,505 1474,544 1516,550 1486,580 1493,622 1455,602 1417,622 1424,580 1394,550 1436,544" fill="#ffc928"/>
+</svg>
