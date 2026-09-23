@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  outputFileTracingIncludes: {
+    "/[accessCode]/files/[filename]": ["./protected-assets/assessment-1a/**/*"],
+  },
 };
 
 export default nextConfig;

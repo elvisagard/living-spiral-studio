@@ -55,7 +55,13 @@ function copyText(text: string) {
   return Promise.resolve();
 }
 
-export default function AssessmentWorkspace({ config }: { config: AssessmentConfig }) {
+export default function AssessmentWorkspace({
+  config,
+  showSetLink = true,
+}: {
+  config: AssessmentConfig;
+  showSetLink?: boolean;
+}) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -92,12 +98,14 @@ export default function AssessmentWorkspace({ config }: { config: AssessmentConf
       <header className="sticky top-0 z-40 border-b border-[#dce3ed] bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-8">
           <div className="flex min-w-0 items-center gap-3">
-            <Link
-              href="/assessment-set-1"
-              className="hidden font-bold text-[#53647b] hover:text-[#0d376d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f2b632] sm:inline"
-            >
-              Set 1
-            </Link>
+            {showSetLink && (
+              <Link
+                href="/assessment-set-1"
+                className="hidden font-bold text-[#53647b] hover:text-[#0d376d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f2b632] sm:inline"
+              >
+                Set 1
+              </Link>
+            )}
             <span
               className="shrink-0 rounded-md px-3 py-2 text-sm font-black text-white"
               style={{ backgroundColor: config.accent }}

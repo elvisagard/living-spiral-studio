@@ -32,14 +32,22 @@ The authority order is:
 
 Any new contradiction must be resolved before the affected assessment advances. This authority decision may be revised before Classroom publication if the user supplies replacement approved targets.
 
-## Locked Delivery Map
+## Secure Delivery Map
 
-| Assessment | Route | Classroom title |
+| Assessment | Delivery state | Classroom title |
 |---|---|---|
-| 1A | `/assessment-1a` | Assessment 1A: Decal Replication |
-| 1B | `/assessment-1b` | Assessment 1B: ID Badge Replication |
-| 1C | `/assessment-1c` | Assessment 1C: Event Ticket Replication |
-| 1D | `/assessment-1d` | Assessment 1D: Promo Card Replication |
+| 1A | Separate opaque, time-gated route per class | Assessment 1A: Decal Replication |
+| 1B | Unavailable | Assessment 1B: ID Badge Replication |
+| 1C | Unavailable | Assessment 1C: Event Ticket Replication |
+| 1D | Unavailable | Assessment 1D: Promo Card Replication |
+
+The sequential assessment routes and public asset folders return 404. Private route values are never recorded in this public repository; only one-way hashes are tracked. Assessment 1A uses these Eastern Time windows on September 23, 2026:
+
+- Grade 7 Technology: 12:30 PM–1:10 PM
+- Grade 6 Technology: 1:10 PM–1:50 PM
+- Grade 8 Technology: 1:50 PM–2:30 PM
+
+The protected page refreshes automatically before its window. During the window, target previews and ordinary PNG downloads are served from the same opaque route without authentication, cookies, access codes, pop-ups, or per-file expiry. After the window, new page and asset requests are blocked; files already downloaded remain usable.
 
 Classroom topic: **Set 1: Visual Replication**
 
@@ -61,7 +69,7 @@ All assignments will be created as drafts first. Dates and publication settings 
 - Students sample colors from the target visual; student pages do not provide palette hex values.
 - Raw photos and icons must not be premasked, precropped, precolored, or assembled into finished components.
 - Images and icons must preserve their proportions.
-- No database or R2 storage is required. Assessment pages and assets remain lightweight and local to the application.
+- No database or R2 storage is required. Assessment pages and assets remain lightweight and local to the application, outside the public static directory.
 - Target images open in an accessible lightbox and are downloadable.
 - Minor manual placement differences are acceptable; pixel-perfect reproduction is not required.
 - The student target image is the visual authority for the construction.
