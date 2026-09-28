@@ -5,11 +5,42 @@ import { getAccessState, getAssessmentAccess } from "@/lib/assessmentAccess";
 
 export const dynamic = "force-dynamic";
 
-const files = {
-  "target-reference.webp": { type: "image/webp", disposition: "inline" },
-  "target-reference.png": { type: "image/png", disposition: "attachment" },
-  "favorite-preview.svg": { type: "image/svg+xml", disposition: "inline" },
-} as const;
+type ProtectedFile = {
+  folder: string;
+  type: string;
+  disposition: "inline" | "attachment";
+};
+
+const files: Record<string, Record<string, ProtectedFile>> = {
+  "1a": {
+    "target-reference.webp": { folder: "assessment-1a", type: "image/webp", disposition: "inline" },
+    "target-reference.png": { folder: "assessment-1a", type: "image/png", disposition: "attachment" },
+    "favorite-preview.svg": { folder: "assessment-1a", type: "image/svg+xml", disposition: "inline" },
+  },
+  "1b": {
+    "target-reference.webp": { folder: "assessment-1b", type: "image/webp", disposition: "inline" },
+    "target-reference.png": { folder: "assessment-1b", type: "image/png", disposition: "attachment" },
+    "golden-retriever-portrait.png": { folder: "assessment-1b", type: "image/png", disposition: "attachment" },
+    "golden-retriever-portrait-preview.webp": { folder: "assessment-1b", type: "image/webp", disposition: "inline" },
+    "pets-preview.svg": { folder: "assessment-1b", type: "image/svg+xml", disposition: "inline" },
+  },
+  "1c": {
+    "target-reference-contrast.webp": { folder: "assessment-1c", type: "image/webp", disposition: "inline" },
+    "target-reference-contrast.png": { folder: "assessment-1c", type: "image/png", disposition: "attachment" },
+    "calendar.svg": { folder: "assessment-1c", type: "image/svg+xml", disposition: "inline" },
+    "location-pin.svg": { folder: "assessment-1c", type: "image/svg+xml", disposition: "inline" },
+    "schedule-preview.svg": { folder: "assessment-1c", type: "image/svg+xml", disposition: "inline" },
+  },
+  "1d": {
+    "target-reference.webp": { folder: "assessment-1d", type: "image/webp", disposition: "inline" },
+    "target-reference.png": { folder: "assessment-1d", type: "image/png", disposition: "attachment" },
+    "basketball-hoop-photo.png": { folder: "assessment-1d", type: "image/png", disposition: "attachment" },
+    "basketball-hoop-photo-preview.webp": { folder: "assessment-1d", type: "image/webp", disposition: "inline" },
+    "calendar.svg": { folder: "assessment-1c", type: "image/svg+xml", disposition: "inline" },
+    "location-pin.svg": { folder: "assessment-1c", type: "image/svg+xml", disposition: "inline" },
+    "schedule-preview.svg": { folder: "assessment-1c", type: "image/svg+xml", disposition: "inline" },
+  },
+};
 
 export async function GET(
   _request: Request,
@@ -17,11 +48,11 @@ export async function GET(
 ) {
   const { accessCode, filename } = await context.params;
   const access = getAssessmentAccess(accessCode);
-  const file = files[filename as keyof typeof files];
+  const file = access ? files[access.assessmentId]?.[filename] : undefined;
 
   if (!access || !file || getAccessState(access) !== "open") notFound();
 
-  const filePath = path.join(process.cwd(), "protected-assets", "assessment-1a", filename);
+  const filePath = path.join(process.cwd(), "protected-assets", file.folder, filename);
   const body = await readFile(filePath);
 
   return new Response(body, {
